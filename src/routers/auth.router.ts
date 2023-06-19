@@ -10,3 +10,10 @@ authRouter.post('/login', passport.authenticate('local', {
     successRedirect: '/auth/success',
     failureRedirect: '/auth/login'
 }));
+
+authRouter.get('/login/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+authRouter.get('/google/callback', passport.authenticate('google'),
+(req, res) => {
+res.send("you are authenticated")
+}
+)
